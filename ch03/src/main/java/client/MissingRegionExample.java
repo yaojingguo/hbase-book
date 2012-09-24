@@ -17,7 +17,8 @@ public class MissingRegionExample {
 
   private static void printTableRegions(String tableName) throws IOException {
     System.out.println("Printing regions of table: " + tableName);
-    HTable table = new HTable(Bytes.toBytes(tableName));
+//    HTable table = new HTable(Bytes.toBytes(tableName));
+    HTable table = new HTable(conf, tableName);
     Pair<byte[][], byte[][]> pair = table.getStartEndKeys();
     for (int n = 0; n < pair.getFirst().length; n++) {
       byte[] sk = pair.getFirst()[n];
@@ -109,7 +110,8 @@ public class MissingRegionExample {
 
     System.out.println("\nAssigning region: " + location.getRegionInfo().
       getRegionNameAsString());
-    admin.assign(location.getRegionInfo().getRegionName(), false); // co MissingRegionExample-9-Open Open the region, which will make the blocked get() in the thread wake up and print its waiting time.
+//    admin.assign(location.getRegionInfo().getRegionName(), false); // co MissingRegionExample-9-Open Open the region, which will make the blocked get() in the thread wake up and print its waiting time.
+    admin.assign(location.getRegionInfo().getRegionName()); // co MissingRegionExample-9-Open Open the region, which will make the blocked get() in the thread wake up and print its waiting time.
 
     try {
       System.out.println("\nSleeping another 3secs in main()...");
