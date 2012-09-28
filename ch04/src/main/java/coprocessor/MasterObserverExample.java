@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HRegionInfo;
+import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.coprocessor.BaseMasterObserver;
 import org.apache.hadoop.hbase.coprocessor.MasterCoprocessorEnvironment;
 import org.apache.hadoop.hbase.coprocessor.ObserverContext;
@@ -23,9 +24,9 @@ public class MasterObserverExample extends BaseMasterObserver {
 
   @Override
   public void postCreateTable(
-    ObserverContext<MasterCoprocessorEnvironment> env,
-    HRegionInfo[] regions, boolean sync)
-  throws IOException {
+    ObserverContext<MasterCoprocessorEnvironment> env, 
+    HTableDescriptor desc, HRegionInfo[] regions)
+  throws IOException {  
     // ^^ MasterObserverExample
     LOG.debug("Got postCreateTable callback");
     // vv MasterObserverExample
