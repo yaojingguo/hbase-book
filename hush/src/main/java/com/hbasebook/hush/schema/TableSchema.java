@@ -10,8 +10,8 @@ import java.util.Map;
 public class TableSchema {
   private String name = null;
   private String description = null;
-  private boolean deferredLogFlush = HTableDescriptor.DEFAULT_DEFERRED_LOG_FLUSH;
-  private long maxFileSize = HTableDescriptor.DEFAULT_MAX_FILESIZE;
+  private boolean deferredLogFlush = false; // HTableDescriptor.DEFAULT_DEFERRED_LOG_FLUSH;
+  private long maxFileSize = Long.MAX_VALUE;// HTableDescriptor.DEFAULT_MAX_FILESIZE;
   private long memStoreFlushSize = HTableDescriptor.DEFAULT_MEMSTORE_FLUSH_SIZE;
   private boolean readOnly = false;
   private final HashMap<String, ColumnDefinition> columns = new HashMap<String, ColumnDefinition>();
